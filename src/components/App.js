@@ -120,10 +120,10 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="app">
         <Navbar account={this.state.account} />
         { this.state.loading
-          ? <div id="loader" className="text-center mt-5"><p>Loading...</p></div>
+          ? <div id="loader" className="text-center mt-5" style={{fontSize:"2rem", fontWeight:"700", color:"white", opacity:"0.75"}}><p>Loading...</p></div>
           : <Main
               files={this.state.files}
               captureFile={this.captureFile}

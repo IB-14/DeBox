@@ -8,47 +8,61 @@ class Main extends Component {
     value: '',
     copied: false,
   };
+  
+  componentDidUpdate() {
+      const actualBtn = document.getElementById('actual-btn');
+      const fileChosen = document.getElementById('file-chosen');
+      actualBtn.addEventListener('change', function(){
+      fileChosen.textContent = this.files[0].name
+  })
+  }
 
   render() {
     return (
-      <div className="container-fluid mt-5 text-center">
+      <div className="container-fluid  text-center">
         <div className="row">
           <main role="main" className="col-lg-12 ml-auto mr-auto" style={{ maxWidth: '1024px' }}>
             <div className="content">
-              <p>&nbsp;</p>
-              <div className="card mb-3 mx-auto bg-dark" style={{ maxWidth: '512px' }}>
-                <h2 className="text-white text-monospace bg-dark"><b><ins>Share File</ins></b></h2>
+              <div className="card mx-auto " style={{ maxWidth: '512px', backgroundColor:"transparent", marginBottom:"80px" }}>
+                <h1 className="text-white  mt-4 mb-2" style={{backgroundColor:"transparent", fontWeight:"700"}}>Upload File</h1>
                   <form onSubmit={(event) => {
                     event.preventDefault()
                     const description = this.fileDescription.value
                     this.props.uploadFile(description)
                   }} >
+                      <input type="file" id="actual-btn" onChange={this.props.captureFile} className="text-white chz"/>
+                      <label className="choose-button" for="actual-btn">
+                        Choose File
+                      </label>
+                      <span id="file-chosen">No file chosen</span>
                       <div className="form-group">
-                        <br></br>
-                          <input
+                          <textarea
                             id="fileDescription"
                             type="text"
                             ref={(input) => { this.fileDescription = input }}
-                            className="form-control text-monospace"
-                            placeholder="description..."
+                            className="form-control "
+                            placeholder="Enter File Description..."
+                            rows="5"
                             required />
                       </div>
-                    <input type="file" onChange={this.props.captureFile} className="text-white text-monospace"/>
-                    <button type="submit" className="btn-primary btn-block"><b>Upload!</b></button>
+                      <div style={{width:"100%", display:"flex", justifyContent:"center"}}>
+                        <div type="submit" className="upload-button">Upload!</div>
+                      </div>
                   </form>
               </div>
-              <p>&nbsp;</p>
-              <table className="table-sm table-bordered text-monospace" style={{ width: '1000px', maxHeight: '450px'}}>
+
+              <h1 className="text-white  my-4" style={{backgroundColor:"transparent", fontWeight:"700"}}>View Files</h1>
+              <table className="table-sm " style={{ width: '1000px', maxHeight: '450px'}}>
                 <thead style={{ 'fontSize': '15px' }}>
-                  <tr className="bg-dark text-white">
-                    <th scope="col" style={{ width: '10px'}}>id</th>
+                  <tr className=" text-white">
+                    <th scope="col" style={{ width: '10px', borderTopLeftRadius: '15px'}}>id</th>
                     <th scope="col" style={{ width: '200px'}}>name</th>
                     <th scope="col" style={{ width: '230px'}}>description</th>
                     <th scope="col" style={{ width: '120px'}}>type</th>
                     <th scope="col" style={{ width: '90px'}}>size</th>
                     <th scope="col" style={{ width: '90px'}}>date</th>
                     <th scope="col" style={{ width: '120px'}}>uploader/view</th>
-                    <th scope="col" style={{ width: '120px'}}>hash/view/get</th>
+                    <th scope="col" style={{ width: '120px', borderTopRightRadius: '15px', borderRight: "none"}}>hash/view/get</th>
                   </tr>
                 </thead>
                 { this.props.files.map((file, key) => {
