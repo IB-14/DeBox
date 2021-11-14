@@ -5,6 +5,8 @@
 .app {
     background-color: #161616;
     min-height: 100vh;
+    min-width: 100vw;
+    width: max-content;
     font-family: 'Poppins', sans-serif !important;
 }
 
