@@ -56,13 +56,23 @@
     border-radius: 15px;
     cursor: pointer;
     width: min-content;
+    border:none
 }
 
-thead {
+.table_heading {
     background: linear-gradient(80.51deg, #983C94 0%, #DC3049 66.53%, #ED944B 98.05%, #ED944B 98.05%);
 }
+table{
+    color:white
+}
 
-th {
+th,td {
     padding: 10px 20px !important;
     border-right: 1px solid #cea2a2;
+}
+.link{
+    padding: 5px 7px 5px 7px;
+    border: none;
+    border-radius: 3px;
+    background: linear-gradient(80.51deg, #983C94 0%, #DC3049 66.53%, #ED944B 98.05%, #ED944B 98.05%);
 }

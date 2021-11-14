@@ -5,7 +5,6 @@ import moment from 'moment'
 
 class Main extends Component {
   state = {
-    value: '',
     copied: false,
   };
   
@@ -26,9 +25,10 @@ class Main extends Component {
               <div className="card mx-auto " style={{ maxWidth: '512px', backgroundColor:"transparent", marginBottom:"80px" }}>
                 <h1 className="text-white  mt-4 mb-2" style={{backgroundColor:"transparent", fontWeight:"700"}}>Upload File</h1>
                   <form onSubmit={(event) => {
-                    event.preventDefault()
-                    const description = this.fileDescription.value
-                    this.props.uploadFile(description)
+                    console.log("form submitted");
+                    event.preventDefault();
+                    const description = this.fileDescription.value;
+                    this.props.uploadFile(description);
                   }} >
                       <input type="file" id="actual-btn" onChange={this.props.captureFile} className="text-white chz"/>
                       <label className="choose-button" for="actual-btn">
@@ -46,14 +46,14 @@ class Main extends Component {
                             required />
                       </div>
                       <div style={{width:"100%", display:"flex", justifyContent:"center"}}>
-                        <div type="submit" className="upload-button">Upload!</div>
+                        <button type="submit" className="upload-button">Upload!</button>
                       </div>
                   </form>
               </div>
 
               <h1 className="text-white  my-4" style={{backgroundColor:"transparent", fontWeight:"700"}}>View Files</h1>
               <table className="table-sm " style={{ width: '1000px', maxHeight: '450px'}}>
-                <thead style={{ 'fontSize': '15px' }}>
+                <thead style={{ 'fontSize': '15px' }} className="table_heading">
                   <tr className=" text-white">
                     <th scope="col" style={{ width: '10px', borderTopLeftRadius: '15px'}}>id</th>
                     <th scope="col" style={{ width: '200px'}}>name</th>
@@ -92,7 +92,7 @@ class Main extends Component {
                           </a> */}
                           <CopyToClipboard text={"https://ipfs.io/ipfs/" + file.fileHash}
                             onCopy={() => this.setState({copied: true})}>
-                            <button>Copy to clipboard link</button>
+                            <button className="link"><i class="fas fa-link"></i></button>
                           </CopyToClipboard>
                         </td>
                       </tr>
