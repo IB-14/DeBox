@@ -16,6 +16,10 @@ class Main extends Component {
   })
   }
 
+  copyShareLink() {
+    alert("Share Link Copied to Clipboard")
+  }
+
   render() {
     return (
       <div className="container-fluid  text-center">
@@ -52,7 +56,7 @@ class Main extends Component {
               </div>
 
               <h1 className="text-white  my-4" style={{backgroundColor:"transparent", fontWeight:"700"}}>View Files</h1>
-              <table className="table-sm " style={{ width: '1000px', maxHeight: '450px'}}>
+              <table className="table-sm" style={{ width: '1000px', maxHeight: '450px', marginBottom:"150px"}}>
                 <thead style={{ 'fontSize': '15px' }} className="table_heading">
                   <tr className=" text-white">
                     <th scope="col" style={{ width: '10px', borderTopLeftRadius: '15px'}}>id</th>
@@ -91,7 +95,7 @@ class Main extends Component {
                             {file.fileHash.substring(0,10)}...
                           </a> */}
                           <CopyToClipboard text={"https://ipfs.io/ipfs/" + file.fileHash}
-                            onCopy={() => this.setState({copied: true})}>
+                            onCopy={() => {this.setState({copied: true}); this.copyShareLink()}}>
                             <button className="link"><i class="fas fa-link"></i></button>
                           </CopyToClipboard>
                         </td>
